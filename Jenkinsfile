@@ -1,22 +1,27 @@
 pipeline {
   agent any
   environment {
-    PATH = "/home/ec2-user/.cargo/bin/cargo:$PATH"
+    PATH = "/home/ec2-user/.cargo/bin:$PATH"
   }
   stages {
-    stage('verify Cargo installation') {
+    stage('Set Rust Default Toolchain') {
       steps {
-        sh 'sudo /home/ec2-user/.cargo/bin/cargo --version'
+        sh 'rustup default stable'
       }
     }
-    stage('compile') {
+    stage('Verify Cargo Installation') {
       steps {
-        sh 'sudo /home/ec2-user/.cargo/bin/cargo build'
+        sh '/home/ec2-user/.cargo/bin/cargo --version'
       }
     }
-    stage('run with Cargo') {
+    stage('Compile') {
       steps {
-        sh 'sudo /home/ec2-user/.cargo/bin/cargo run'
+        sh '/home/ec2-user/.cargo/bin/cargo build'
+      }
+    }
+    stage('Run with Cargo') {
+      steps {
+        sh '/home/ec2-user/.cargo/bin/cargo run'
       }
     }
   }
