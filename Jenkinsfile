@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+    PATH = "/usr/local/cargo/bin:$PATH"
+  }
   stages {
     stage('verify Cargo installation') {
       steps {
