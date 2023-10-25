@@ -17,7 +17,12 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-
+      - name: Set environment variables
+        run: |
+            echo "DATABASE_URL=your_database_connection_url" >> $GITHUB_ENV
+        env:
+            DATABASE_URL: ${{ secrets.DATABASE_URL }}
+            
       - name: Install dependencies
         run: cargo build --verbose
 
