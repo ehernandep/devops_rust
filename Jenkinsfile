@@ -1,19 +1,22 @@
 pipeline {
   agent any
+  environment {
+    PATH = "~/.cargo/bin/:$PATH"
+  }
   stages {
     stage('verify Cargo installation') {
       steps {
-        sh '/.cargo/bin/cargo --version'
+        sh 'cargo --version'
       }
     }
     stage('compile') {
       steps {
-        sh '/.cargo/bin/cargo build'
+        sh 'cargo build'
       }
     }
     stage('run with Cargo') {
       steps {
-        sh '/.cargo/bin/cargo run'
+        sh 'cargo run'
       }
     }
   }
