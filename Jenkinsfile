@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Set Rust Default Toolchain') {
       steps {
-        sh '/root/.cargo/bin/rustup default stable'
+        sh 'sudo /root/.cargo/bin/rustup default stable'
       }
     }
     stage('Verify Cargo Installation') {
