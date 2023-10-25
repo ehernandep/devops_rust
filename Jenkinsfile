@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    PATH = "~/.cargo/bin/:$PATH"
+    PATH = "/home/ec2-user/.cargo/bin/cargo:$PATH"
   }
   stages {
     stage('verify Cargo installation') {
