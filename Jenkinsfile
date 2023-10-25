@@ -11,17 +11,17 @@ pipeline {
     }
     stage('Verify Cargo Installation') {
       steps {
-        sh '/home/ec2-user/.cargo/bin/cargo --version'
+        sh 'sudo /home/ec2-user/.cargo/bin/cargo --version'
       }
     }
     stage('Compile') {
       steps {
-        sh '/home/ec2-user/.cargo/bin/cargo build'
+        sh 'sudo /home/ec2-user/.cargo/bin/cargo build'
       }
     }
     stage('Run with Cargo') {
       steps {
-        sh '/home/ec2-user/.cargo/bin/cargo run'
+        sh 'sudo /home/ec2-user/.cargo/bin/cargo run'
       }
     }
   }
