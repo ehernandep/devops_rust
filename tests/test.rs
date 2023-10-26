@@ -1,11 +1,8 @@
 
-// In tests/your_module_tests.rs
-
-// Import necessary modules and types
-use actix_rt::test; // Import actix-rt for testing
-use actix_web::http::StatusCode; // Import StatusCode from actix-web
-use sqlx::query; // Import query from sqlx
-use soccer::AppState; // Import your AppState type, replacing "your_project" with the actual name of your project
+use actix_rt::test;
+use actix_web::http::StatusCode;
+use sqlx::query; 
+use soccer::routes::*;
 
 
 #[cfg(test)]
