@@ -1,8 +1,8 @@
-# Use the official Rust image as the base image
-FROM rust:1.73.0
+# Ue the official Rust image as the base image
+FROM rust:latest
 
 # Set the working directory inside the container
-WORKDIR /app
+WORKDIR /usr/src/
 
 # Copy the entire project into the container
 COPY . .
@@ -18,4 +18,4 @@ RUN cargo build --release
 EXPOSE 8080
 
 # Run your Rust application
-CMD ["target/release/soccer_binary"]
+CMD ["cargo", "run"]
