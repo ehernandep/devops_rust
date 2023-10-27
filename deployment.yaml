@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: devopsfinalproject
-  labels:
-    app: devopsfinalproject
+  name: server-demo
+  namespace: default
+
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: devopsfinalproject
+      app: web
   template:
     metadata:
       labels:
-        app: devopsfinalproject
+        app: web
     spec:
       containers:
         - name: devopsfinalproject
-          image: 328425174770.dkr.ecr.us-east-2.amazonaws.com/devopsfinalproject
+          image: 328425174770.dkr.ecr.us-east-2.amazonaws.com/devopsfinalproject:1.1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
