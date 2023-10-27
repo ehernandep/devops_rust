@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Build your Rust application
-RUN cargo build --release
+RUN cargo build --verbose
 
 # Define the command to run when the container starts
 CMD ["./target/release/soccer"]
