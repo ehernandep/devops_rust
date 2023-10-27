@@ -2,7 +2,7 @@
 FROM rust:latest
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # Copy your Rust project files into the container
 COPY . .
@@ -14,5 +14,7 @@ ENV DATABASE_URL=postgresql://ehernandep:Tonterias4316*@finalproject.csif2sx3kog
 # Build your Rust application
 RUN cargo build --verbose
 
+EXPOSE 8080
+
 # Define the command to run when the container starts
-CMD ["./target/release/soccer"]
+CMD ["cargo", "run"]
