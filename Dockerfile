@@ -1,6 +1,6 @@
 FROM rust:latest
 
-WORKDIR /usr/src/
+WORKDIR /usr/src/soccer
 
 COPY . .
 
