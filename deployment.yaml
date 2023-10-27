@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: devopsfinalproject
-          image: 328425174770.dkr.ecr.us-east-1.amazonaws.com/devopsfinalproject
+          image: 328425174770.dkr.ecr.us-east-1.amazonaws.com/devopsfinalproject:1.1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
