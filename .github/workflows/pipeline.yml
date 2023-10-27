@@ -3,7 +3,7 @@ name: Rust CI
 on:
   push:
     branches: [ "main" ]
-    
+
   pull_request:
     branches: [ "main" ]
 
@@ -57,7 +57,7 @@ jobs:
         run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
-  
+      
       - name: Update kube config
         run: aws eks update-kubeconfig --name devopsfinalproject
       
@@ -65,3 +65,5 @@ jobs:
         run: |
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
+
+          
