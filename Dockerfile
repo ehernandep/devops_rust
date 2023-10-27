@@ -15,7 +15,7 @@ ENV DATABASE_URL=postgresql://ehernandep:Tonterias4316*@finalproject.csif2sx3kog
 RUN cargo build --release
 
 # Expose the port your application will run on
-EXPOSE 8000
+EXPOSE 8080
 
 # Run your Rust application
 CMD ["target/release/soccer_binary"]
