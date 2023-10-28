@@ -29,6 +29,9 @@ jobs:
       - name: Install dependencies
         run: cargo build --verbose
 
+      - name: Test Code
+        run: cargo test
+
       - name: Checkout code
         uses: actions/checkout@v3
   

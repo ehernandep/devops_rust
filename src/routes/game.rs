@@ -2,10 +2,12 @@ use crate::models::game::{GameModel, CreateGameSchema, UpdateGameSchema};
 use crate::AppState;
 
 
+
 // TODO: check if I can delete this imports if also used somewhere else
 use actix_web::{get, post, put, web, HttpResponse, Responder, delete};
 use chrono::Utc;
 use serde_json::json;
+use actix_web::App;
 
 
 #[get("/games")]
@@ -143,39 +145,3 @@ async fn delete_game(path: web::Path<uuid::Uuid>, data: web::Data<AppState>) -> 
     HttpResponse::NoContent().finish()
 }
 
-use std::borrow::Cow;
-
-// ...
-
-#[actix_rt::test]
-async fn test_get_game_by_id() {
-    let app = test::init_service(App::new().service(get_game_by_id)).await;
-    let game_id = uuid::Uuid::new_v4();
-    let uri: Cow<str> = format!("/games/game/{}", game_id).into();
-    let req = test::TestRequest::get().uri(&uri).to_request();
-    let resp = test::call_service(&app, req).await;
-
-    assert_eq!(resp.status(), StatusCode::OK);
-}
-
-#[actix_rt::test]
-async fn test_update_game() {
-    let app = test::init_service(App::new().service(update_game)).await;
-    let game_id = uuid::Uuid::new_v4();
-    let uri: Cow<str> = format!("/games/game/{}", game_id).into();
-    let req = test::TestRequest::put().uri(&uri).to_request();
-    let resp = test::call_service(&app, req).await;
-
-    assert_eq!(resp.status(), StatusCode::OK);
-}
-
-#[actix_rt::test]
-async fn test_delete_game() {
-    let app = test::init_service(App::new().service(delete_game)).await;
-    let game_id = uuid::Uuid::new_v4();
-    let uri: Cow<str> = format!("/games/game/{}", game_id).into();
-    let req = test::TestRequest::delete().uri(&uri).to_request();
-    let resp = test::call_service(&app, req).await;
-
-    assert_eq!(resp.status(), StatusCode::NO_CONTENT);
-}

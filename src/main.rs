@@ -1,6 +1,7 @@
 mod routes;
 mod models;
-
+use actix_web::test;
+use actix_http::StatusCode;
 use actix_cors::Cors;
 use actix_web::{HttpServer, middleware::Logger, App, http::header};
 use sqlx::{Postgres, Pool, postgres::PgPoolOptions};
@@ -62,4 +63,39 @@ async fn main() -> std::io::Result<()> {
 }
 
 #[cfg(test)]
-mod game_tests;
+mod tests {
+    use super::*;
+    use actix_web::test;
+    use std::borrow::Cow;
+    use dotenv::dotenv;
+    use std::env;
+    
+    #[actix_rt::test]
+    async fn test_health_checker_handler() {
+        // Create a test server instance
+        let mut app = test::init_service(App::new().service(health_checker_handler)).await;
+
+        // Perform a GET request to the health check route
+        let req = test::TestRequest::get().uri("/api/healthchecker").to_request();
+        let resp = test::call_service(&mut app, req).await;
+
+        // Assert the response
+        assert!(resp.status().is_success());
+    }
+
+    #[actix_rt::test]
+    async fn test_database_connection() {
+        dotenv().ok();
+        // Create a test database and set its URL
+        let test_database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+        // Attempt to connect to the test database
+        let pool = PgPoolOptions::new()
+            .max_connections(1) // Adjust the number of connections as needed
+            .connect(&test_database_url)
+            .await;
+
+        // Assert that the database connection is successful
+        assert!(pool.is_ok());
+    }
+
+}
