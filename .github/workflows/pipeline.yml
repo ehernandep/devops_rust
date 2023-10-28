@@ -58,12 +58,11 @@ jobs:
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
       
-      - name: Update kube config
-        run: aws eks update-kubeconfig --name EKS-Demo-Cluster
-      
-      - name: Deploy to EKS
-        run: |
-          kubectl apply -f deployment.yaml
-          kubectl apply -f service.yaml
+      - name: Deploy AWS Elastic Beanstalk Application
+        uses: aws-actions/deploy-elastic-beanstalk@v1
+        with:
+          application-name: soccer
+          environment-name: env
+          region: us-east-1 
 
           
