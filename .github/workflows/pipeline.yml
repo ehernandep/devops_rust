@@ -69,6 +69,6 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: Soccer-env-1
           environment_name: Soccer-env-1-env
-          version_label: 12345
+          version_label: 0.1.0
           region: us-east-1
           docker_image: 328425174770.dkr.ecr.us-east-1.amazonaws.com/devopsfinalproject:1.1
