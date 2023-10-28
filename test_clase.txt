@@ -1,0 +1,23 @@
+# Get Method
+GET 
+http://localhost:8080/api/games
+
+# GetById Method
+GET 
+http://localhost:8080/api/games/game/{id}
+
+# Create Method
+POST 
+http://localhost:8080/api/games/game \
+'{
+    "field_name":"jaula angel", 
+    "address": "calle 3", 
+    "day": "4"
+}'
+http://localhost:8080/api/games/game/9e5fba4c-55a1-4167-8980-7a6d371bfc8a \
+'{
+    "field_name":"jaula angel",
+    "address": "calle 2" 
+}'
+DELETE 
+http://localhost:8080/api/games/game/effcf693-8b6e-403a-853f-e77e399a330d \
