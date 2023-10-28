@@ -74,3 +74,14 @@ jobs:
         run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v16
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: <beanstalk application name>
+          environment_name: Devopsfinalproject-env
+          version_label: "docker-app-${{ steps.format-time.outputs.replaced }}"
+          region: us-west-2
+          deployment_package: deploy.zip
