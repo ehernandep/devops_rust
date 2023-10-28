@@ -57,12 +57,17 @@ jobs:
         run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+   
+      - name: Create S3 Bucket
+        run: |
+          aws s3api create-bucket --bucket devopsprojectfinal --region us-east-1 --create-bucket-configuration LocationConstraint=us-east-1
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       
-      - name: Deploy AWS Elastic Beanstalk Application
-        uses: aws-actions/deploy-elastic-beanstalk@v1
-        with:
-          application-name: soccer
-          environment-name: env
-          region: us-east-1 
-
-          
+      - name: Upload Docker Image to S3
+        run: |
+          aws s3 cp s3://${{ steps.login-ecr.outputs.registry }}/devopsfinalproject/1.1 devopsprojectfinal/
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
