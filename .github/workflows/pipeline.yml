@@ -38,7 +38,7 @@ jobs:
       - name: Install kubectl
         uses: azure/setup-kubectl@v2.0
         with:
-          version: 'v1.24.0' # default is latest stable
+          version: 'v1.24.0'
         id: install
         
       - name: Configure AWS Credentials
@@ -69,6 +69,6 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: Soccer-env-1
           environment_name: Soccer-env-1-env
-          version_label: 0.1.0
+          version_label: 1
           region: us-east-1
           docker_image: 328425174770.dkr.ecr.us-east-1.amazonaws.com/devopsfinalproject:1.1
