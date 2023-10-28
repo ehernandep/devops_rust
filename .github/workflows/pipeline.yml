@@ -66,7 +66,9 @@ jobs:
         run: |
             # Install the Elastic Beanstalk CLI
             pip install awsebcli
-        
+            
+            eb list
+
             # Configure AWS Elastic Beanstalk environment
             eb init -r us-east-1 -p '64bit Amazon Linux 2' Soccer-env-1
         
